@@ -1,8 +1,10 @@
 import os
 from PyLTSpice.sim_stepping import SimStepper
 
+
 def processing_data(raw_file, log_file):
-    print("Handling the simulation data of %s" % log_file )
+    print("Handling the simulation data of %s" % log_file)
+
 
 # get script absolute path
 meAbsPath = os.path.dirname(os.path.realpath(__file__))
@@ -20,7 +22,7 @@ Stepper.add_instructions(
     ".param run = 0"
 )
 Stepper.set_parameter('test_param2', 20)
-Stepper.add_model_sweep('XU1',('AD712', 'AD820'))
+Stepper.add_model_sweep('XU1', ('AD712', 'AD820'))
 Stepper.add_value_sweep('V1', (5, 10, 15))
 # Stepper.add_value_sweep('V1', (-5, -10, -15))
 
