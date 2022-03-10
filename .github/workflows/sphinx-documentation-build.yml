@@ -3,10 +3,8 @@ on: [push, pull_request]
 
 jobs:
   sphinx-build:
-    name: Build Sphinx documentation
     runs-on: ubuntu-latest
     steps:
-    - name: Sphinx Build
     - uses: actions/checkout@v1
     - uses: ammaraskar/sphinx-action@master
       with:
