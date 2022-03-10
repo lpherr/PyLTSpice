@@ -1,3 +1,4 @@
+name: Linting and PEP8
 on: [push, pull_request]
 
 jobs:
@@ -11,4 +12,4 @@ jobs:
     - name: linting
       uses: alexanderdamiani/pylinter@v1.4.0
       with:
-        flake8-flags: '--count --show-source --statistics --max-line-length 120'
+        flake8-flags: '--count --statistics --max-line-length 125'
