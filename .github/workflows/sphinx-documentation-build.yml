@@ -1,0 +1,8 @@
+Name: Build Sphinx documentation
+on: [push, pull_request]
+
+jobs:
+  sphinx-build:
+    runs-on: ubuntu-latest
+    - name: Sphinx Build
+      uses: ammaraskar/sphinx-action@0.4
