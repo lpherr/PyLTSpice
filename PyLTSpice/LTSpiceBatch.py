@@ -87,7 +87,6 @@ simulation is finished.
 __author__ = "Nuno Canto Brum <nuno.brum@gmail.com>"
 __copyright__ = "Copyright 2020, Fribourg Switzerland"
 
-from abc import ABC
 from warnings import warn
 import subprocess
 import threading
@@ -201,7 +200,7 @@ class RunTask(threading.Thread):
             logger.warning(time.asctime() + ": Simulation Failed. Time elapsed %s:%s" % (sim_time, END_LINE_TERM))
             if os.path.exists(self.log_file):
                 old_log_file = self.log_file
-                self.log_file =  netlist_radic + '.fail'
+                self.log_file = netlist_radic + '.fail'
                 os.rename(old_log_file, self.log_file)
 
     def wait_results(self) -> Tuple[str, str]:
@@ -298,7 +297,6 @@ class SimCommander(SpiceEditor):
             LTspice_exe = run_command
         else:
             raise TypeError("Expecting str or list objects")
-
 
     def add_LTspiceRunCmdLineSwitches(self, *args) -> None:
         """
@@ -418,7 +416,6 @@ class LTCommander(SimCommander):
              "For more information consult. https://www.nunobrum.com/pyspicer.html", DeprecationWarning)
         SimCommander.__init__(self, circuit_file, 1)
 
-
     def write_log(self, text: str):
         mlog = open(self.circuit_radic + '.masterlog', 'a')
         if text.endswith(END_LINE_TERM):
@@ -506,7 +503,6 @@ if __name__ == "__main__":
         print("Raw file '%s' | Log File '%s'" % (raw, log))
     # Sim Statistics
     print('Successful/Total Simulations: ' + str(LTC.okSim) + '/' + str(LTC.runno))
-
 
     def callback_function(raw_file, log_file):
         print("Handling the simulation data of %s, log file %s" % (raw_file, log_file))

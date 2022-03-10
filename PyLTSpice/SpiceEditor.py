@@ -29,19 +29,19 @@ SPICE_DOT_INSTRUCTIONS = (
     '.BACKANNO',
     '.END',
     '.ENDS',
-    '.FERRET', # Downloads a File from a given URL
+    '.FERRET',  # Downloads a File from a given URL
     '.FOUR',  # Compute a Fourier Component after a .TRAN Analysis
     '.FUNC', '.FUNCTION',
     '.GLOBAL',
     '.IC',
     '.INC', '.INCLUDE',  # Include another file
-    '.LIB', # Include a Library
-    '.LOADBIAS', # Load a Previously Solved DC Solution
+    '.LIB',  # Include a Library
+    '.LOADBIAS',  # Load a Previously Solved DC Solution
      # These Commands are part of the contraption Programming Language of the Arbitrary State Machine
     '.MACHINE', '.STATE', '.RULE', '.OUTPUT', '.ENDMACHINE',
     '.MEAS', '.MEASURE',
     '.MODEL',
-    '.NET', # Compute Network Parameters in a .AC Analysis
+    '.NET',  # Compute Network Parameters in a .AC Analysis
     '.NODESET',  # Hints for Initial DC Solution
     '.OP',
     '.OPTIONS',
@@ -51,7 +51,7 @@ SPICE_DOT_INSTRUCTIONS = (
     '.STEP',
     '.SUBCKT',
     '.TEXT',
-    '.WAVE', # Write Selected Nodes to a .Wav File
+    '.WAVE',  # Write Selected Nodes to a .Wav File
 
 )
 
@@ -127,7 +127,7 @@ def format_eng(value) -> str:
         suffix = 'Meg'
     else:
         return '{:E}'.format(value)
-    return '{:g}{:}'.format(value* 1000**-e, suffix)
+    return '{:g}{:}'.format(value * 1000**-e, suffix)
 
 
 def _get_group_regxstr(regstr, param):
@@ -193,6 +193,7 @@ def _first_token_upped(line):
         i += 1
     return line[j:i].upper()
 
+
 def _is_unique_instruction(instruction):
     """
     (Private function. Not to be used directly)
@@ -204,6 +205,7 @@ def _is_unique_instruction(instruction):
 
 class ComponentNotFoundError(Exception):
     """Component Not Found Error"""
+
 
 class ParameterNotFoundError(Exception):
     """ParameterNotFound Error"""
@@ -621,7 +623,7 @@ class SpiceEditor(SpiceCircuit):
         for instruction in instructions:
             self.add_instruction(instruction)
 
-    def remove_instruction(self, instruction)->None:
+    def remove_instruction(self, instruction) -> None:
         """Usage a previously added instructions.
         Example: ::
 
@@ -640,7 +642,7 @@ class SpiceEditor(SpiceCircuit):
 
         self.netlist.remove(instruction)
 
-    def write_netlist(self, run_netlist_file: str)->None:
+    def write_netlist(self, run_netlist_file: str) -> None:
         """
         Writes the netlist will all the requested updates into a file named <run_netlist_file>.
         :param run_netlist_file: File name of the netlist file.
@@ -656,7 +658,7 @@ class SpiceEditor(SpiceCircuit):
                 f.write(line)
         f.close()
 
-    def reset_netlist(self)->None:
+    def reset_netlist(self) -> None:
         """
         Removes all previous edits done to the netlist, i.e. resets it to the original state.
 
