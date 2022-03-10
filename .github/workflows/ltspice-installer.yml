@@ -8,5 +8,5 @@ jobs:
       - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
       - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
       - name: Download installer
-      - run: curl -O https://ltspice.analog.com/software/LTspice64.exe
+        run: curl -O https://ltspice.analog.com/software/LTspice64.exe
       - run: echo "🍏 This job's status is ${{ job.status }}."
