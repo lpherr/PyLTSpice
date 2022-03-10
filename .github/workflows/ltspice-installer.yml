@@ -13,4 +13,8 @@ jobs:
         run: |
           echo %cd%
           dir
+          dir ..
+          dir ..\..
+          dir ..\..\..
+          dir ..\..\..\..
       - run: echo "🍏 This job's status is ${{ job.status }}."
