@@ -10,6 +10,7 @@ jobs:
       - name: Download LTSpice x64 installer
         run: curl -O https://ltspice.analog.com/software/LTspice64.exe
       - name: Execute LTSpice x64 installer
-        run: echo %cd%
-        run: dir
+        run: |
+          echo %cd%
+          dir
       - run: echo "🍏 This job's status is ${{ job.status }}."
