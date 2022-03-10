@@ -138,4 +138,3 @@ if __name__ == "__main__":
     test.add_value_sweep("R1", sweep_log(0.1, 10, 10))
     test.add_model_sweep("D1", ("model1", "model2"))
     test.run_all()
-

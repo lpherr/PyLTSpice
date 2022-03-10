@@ -139,7 +139,7 @@ class LTSpiceRawWrite(object):
         f.write("Binary:\n".encode(self.encoding))
         if self.flag_fastaccess:
             for trace in self._traces:
-                if False: #USE_NNUMPY:
+                if False:  # USE_NNUMPY:
                     # TODO: Implement a faster save using the numpy methods
                     f.write(trace.data.pack('dd'))
                 else:
@@ -170,7 +170,7 @@ class LTSpiceRawWrite(object):
         return False
 
     def add_traces_from_raw(self, other: LTSpiceRawRead, trace_filter: Union[list, tuple], **kwargs):
-        skip_doc ="""
+        skip_doc = """
         *(Not fully implemented)*
 
         Merge two LTSpiceRawWrite classes together resulting in a new instance
@@ -316,7 +316,6 @@ if __name__ == '__main__':
             LW.add_trace(Trace('Ampl', [x[1] for x in data]))
             LW.save("teste_trc.raw")
         f.close()
-
 
     def test_axis_sync():  # Test axis sync
         LW = LTSpiceRawWrite()
