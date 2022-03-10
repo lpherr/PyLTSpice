@@ -15,8 +15,7 @@
 """
 
 
-
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # Python Libs
 #
 import math
@@ -111,14 +110,12 @@ def sweep_logN(start: Union[int, float], stop: Union[int, float], N: int) -> Ite
         inc += 1
 
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 
-
-
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 class sweep_iterators:
 
-    #*****************************
+    # *****************************
     def __init__(self):
         """
         Initialization
@@ -127,21 +124,20 @@ class sweep_iterators:
         self.numCurrentIteration = 0    # current iteration
         self.iteratorEntrys = []        # list of dicts for iterator entrys
         self.idxForNextIter = []        # currently used entry value for loop
-    #*****************************
-    
-    
-    #*****************************
+    # *****************************
+
+    # *****************************
     def add(self, name="", vals = []):
         """
         @note               adds entry to list of iterators
-                            
+
         @param name         component name in ltspice schematic
         @param vals         component values
         @rtype              boolean
         @return             successful
         """
         # check for valid arguments
-        if ( 0 == len(name) or 0 == len(vals) ):
+        if (0 == len(name) or 0 == len(vals)):
             raise ValueError("Empty arguments provided")
         # add to iterator list
         self.iteratorEntrys.append({'name': name, 'values': vals})  # add entry
@@ -154,10 +150,9 @@ class sweep_iterators:
         self.numCurrentIteration = 0
         # succesfull end
         return True
-    #*****************************
-    
-    
-    #*****************************
+    # *****************************
+
+    # *****************************
     def done(self):
         """
         @note               check if iteration is done
@@ -167,25 +162,24 @@ class sweep_iterators:
         @return             successful
         """
         # check for proper init
-        if ( 0 == len(self.iteratorEntrys) ):
+        if (0 == len(self.iteratorEntrys)):
             return True
         # iteration done?
-        if ( self.numCurrentIteration < self.numTotalIterations ):
+        if (self.numCurrentIteration < self.numTotalIterations):
             return False
         return True
-    #*****************************
-    
-    
-    #*****************************
+    # *****************************
+
+    # *****************************
     def next(self):
         """
         @note               creates next parameter set for sweep
-        
+
         @rtype              dict
         @return             parameter set
         """
         # check for iterators
-        if ( 0 == len(self.iteratorEntrys) ):
+        if (0 == len(self.iteratorEntrys)):
             raise ValueError("No iterator entrys defined. Use 'add' procedure")
         # assemble dict with new iterator values
         nextIter = {}
@@ -205,23 +199,21 @@ class sweep_iterators:
         # next iteration element
         return nextIter
     #*****************************
-    
-#------------------------------------------------------------------------------
 
+# ------------------------------------------------------------------------------
 
-
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 if __name__ == '__main__':
-    
+
     # init class
-    mySI = sweep_iterators()    
-    
+    mySI = sweep_iterators()
+
     # add to sweep
     mySI.add('R1', [10, 20])
     mySI.add('R2', [0, 1])
     mySI.add('X1', ["abc", "def"])
-    
+
     # generate iterator
     while ( not mySI.done() ):
         print(mySI.next())
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
