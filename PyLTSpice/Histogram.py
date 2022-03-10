@@ -63,18 +63,18 @@ from optparse import OptionParser
 
 usage = "usage: %prog [options] LOG_FILE TRACE"
 opts = OptionParser(usage=usage, version="%prog 0.1")
-#opts.add_option('v', "var", action="store", type="string", dest="trace", help="The trace to be used in the histogram")
-opts.add_option('-s',"--sigma", action ="store", type="int", dest="sigma", default=3, help="Sigma to be used in the distribution fit. Default=3")
-opts.add_option('-n', "--nbins", action="store",  type="int", dest="nbins", default=20, help="Number of bins to be used in the histogram. Default=20")
+# opts.add_option('v', "var", action="store", type="string", dest="trace", help="The trace to be used in the histogram")
+opts.add_option('-s', "--sigma", action="store", type="int", dest="sigma", default=3, help="Sigma to be used in the distribution fit. Default=3")
+opts.add_option('-n', "--nbins", action="store", type="int", dest="nbins", default=20, help="Number of bins to be used in the histogram. Default=20")
 opts.add_option('-c', "--condition", action="append", type="string", dest="filters",
                 help="Filter condition writen in python. More than one expression can be added but each expression should be preceded by -c.\n" +
-                     "EXAMPLE: -c V(N001)>4 -c parameter==1 -c  I(V1)<0.5" )
+                     "EXAMPLE: -c V(N001)>4 -c parameter==1 -c  I(V1)<0.5")
 opts.add_option('-f', "--format", action="store", type="string", dest="format", help="Format string for the X axis. Example: -f %3.4f")
-#opts.add_option('-p', "--scaling",action="store", type="string", dest="prescaling", help="Prescaling function to be applied to the input value.")
+# opts.add_option('-p', "--scaling",action="store", type="string", dest="prescaling", help="Prescaling function to be applied to the input value.")
 opts.add_option('-t', "--title", action="store", type="string", dest="title", help="Title to appear on the top of the histogram.")
 opts.add_option('-r', "--range", action="store", type="string", dest="range", help="Range of the X axis to use for the histogram in the form min:max. Example: -r -1:1")
 opts.add_option('-C', "--clipboard", action="store_true", dest="clipboard", help="If the data from the clipboard is to be used.")
-#opts.add_option('-x', "--xname", action="store", dest="xname", help="Name for the variable displayed")
+# opts.add_option('-x', "--xname", action="store", dest="xname", help="Name for the variable displayed")
 opts.add_option('-i', "--image", action="store", type="string", dest="imagefile", help="Name of the image File. extension 'png'")
 
 (options, args) = opts.parse_args()
@@ -99,7 +99,7 @@ if options.clipboard:
         except ValueError:
             print("Failed to process ")
             print(line)
-elif len(args)==0:
+elif len(args) == 0:
     opts.print_help()
     exit(-1)
 else:
@@ -136,16 +136,15 @@ else:
         print("LOG FILE contains %s" % vars)
         exit(-1)
 
-
     if (options.filters is None) or (len(options.filters) == 0):
         for line in log:
-            #print(line)
+            # print(line)
             vs = line.split('\t')
             values.append(float(vs[sav_col]))
     else:
         for line in log:
-            vs = map(float,line.split('\t'))
-            env = dict(zip(vars,vs))
+            vs = map(float, line.split('\t'))
+            env = dict(zip(vars, vs))
 
             for expression in options.filters:
                 test = eval(expression, None, env)
